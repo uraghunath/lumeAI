@@ -1,4 +1,4 @@
-# 🌟 LumeAI - Transparency-as-a-Service
+# LumeAI - Transparency-as-a-Service
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Android](https://img.shields.io/badge/Platform-Android-green.svg)](https://developer.android.com)
