@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">LumeAI</string>
+    <string name="app_tagline">Transparency-as-a-Service for Banking AI</string>
+    
+    <!-- Main Screen -->
+    <string name="main_title">LumeAI</string>
+    <string name="main_subtitle">Making AI decisions explainable, fair, and auditable</string>
+    
+    <!-- Explanation Screen -->
+    <string name="explanation_title">AI Decision Explainer</string>
+    <string name="explanation_subtitle">Understand why banks make AI decisions</string>
+    <string name="select_scenario">Select Demo Scenario:</string>
+    <string name="explain_button">Explain Decision</string>
+    <string name="switch_language">Switch Language</string>
+    
+    <!-- Consent Screen -->
+    <string name="consent_title">Consent &amp; Control</string>
+    <string name="consent_subtitle">Control how banks use your data</string>
+    <string name="grant_consent">Grant Consent</string>
+    <string name="deny_consent">Deny Consent</string>
+    <string name="revoke_consent">Revoke Consent</string>
+    
+    <!-- Sections -->
+    <string name="section_summary">Summary</string>
+    <string name="section_factors">Decision Factors</string>
+    <string name="section_next_steps">What You Can Do</string>
+    <string name="section_appeal">Appeal Process</string>
+    <string name="section_bias_warning">Fairness Alert</string>
+    
+    <!-- Common -->
+    <string name="loading">Loading…</string>
+    <string name="error">An error occurred</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    
+    <!-- Impact Levels -->
+    <string name="impact_high">HIGH</string>
+    <string name="impact_medium">MEDIUM</string>
+    <string name="impact_low">LOW</string>
+    
+    <!-- Decision Types -->
+    <string name="decision_loan_denial">Loan Denied</string>
+    <string name="decision_transaction_blocked">Transaction Blocked</string>
+    <string name="decision_credit_reduced">Credit Limit Reduced</string>
+    <string name="decision_loan_approved">Loan Approved</string>
+</resources>
+

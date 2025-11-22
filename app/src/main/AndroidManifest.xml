@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.lumeai.banking">
+
+    <!-- Permissions -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    
+    <!-- Query for speech recognition (Android 11+) -->
+    <queries>
+        <intent>
+            <action android:name="android.speech.RecognitionService" />
+        </intent>
+    </queries>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
+        
+        <!-- Main Activity -->
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <!-- Lookup Activity -->
+        <activity
+            android:name=".ui.LookupActivity"
+            android:exported="false"
+            android:label="Transaction Lookup"
+            android:parentActivityName=".ui.MainActivity" />
+        
+        <!-- AI Explainability Hub (Unified Explanation Page) -->
+        <activity
+            android:name=".ui.AIExplainabilityHubActivity"
+            android:exported="false"
+            android:label="AI Explainability Hub"
+            android:parentActivityName=".ui.MainActivity" />
+        
+        <!-- Consent Activity -->
+        <activity
+            android:name=".ui.ConsentActivity"
+            android:exported="false"
+            android:label="Consent &amp; Privacy"
+            android:parentActivityName=".ui.MainActivity" />
+        
+        <!-- Chatbot Activity -->
+        <activity
+            android:name=".ui.ChatbotActivity"
+            android:exported="false"
+            android:label="AI Assistant"
+            android:parentActivityName=".ui.MainActivity"
+            android:windowSoftInputMode="adjustResize" />
+        
+        <!-- Dashboard Activity -->
+        <activity
+            android:name=".ui.DashboardActivity"
+            android:exported="false"
+            android:label="Financial Dashboard"
+            android:parentActivityName=".ui.MainActivity" />
+        
+        <!-- Progress Tracker Activity -->
+        <activity
+            android:name=".ui.ProgressTrackerActivity"
+            android:exported="false"
+            android:label="Credit Improvement Roadmap"
+            android:parentActivityName=".ui.MainActivity" />
+        
+        <!-- Document Validation Activity -->
+        <activity
+            android:name=".ui.DocumentValidationActivity"
+            android:exported="false"
+            android:label="Document Validation AI"
+            android:parentActivityName=".ui.MainActivity" />
+        
+        <!-- Settings Activity -->
+        <activity
+            android:name=".ui.SettingsActivity"
+            android:exported="false"
+            android:label="Financial Settings"
+            android:parentActivityName=".ui.MainActivity" />
+        
+        <!-- Profile Activity -->
+        <activity
+            android:name=".ui.ProfileActivity"
+            android:exported="false"
+            android:label="My Profile"
+            android:parentActivityName=".ui.MainActivity" />
+        
+        <!-- More Features Activity -->
+        <activity
+            android:name=".ui.MoreFeaturesActivity"
+            android:exported="false"
+            android:label="More Features"
+            android:parentActivityName=".ui.MainActivity" />
+        
+        <!-- How It Works Activity -->
+        <activity
+            android:name=".ui.HowItWorksActivity"
+            android:exported="false"
+            android:label="How LumeAI Works"
+            android:parentActivityName=".ui.MainActivity" />
+        
+        <!-- Decode Message Activity -->
+        <activity
+            android:name=".ui.DecodeMessageActivity"
+            android:exported="false"
+            android:label="Decode Bank Message"
+            android:parentActivityName=".ui.MainActivity"
+            android:windowSoftInputMode="adjustResize" />
+        
+        
+        <activity
+            android:name=".ui.EducationalContentActivity"
+            android:exported="false"
+            android:label="Learn About Credit"
+            android:parentActivityName=".ui.MainActivity" />
+        
+        <!-- Path to Approval Activity -->
+        <activity
+            android:name=".ui.PathToApprovalActivity"
+            android:exported="false"
+            android:label="Path to Approval"
+            android:parentActivityName=".ui.MainActivity" />
+        
+        <!-- Fairness Metrics Activity -->
+        <activity
+            android:name=".ui.FairnessMetricsActivity"
+            android:exported="false"
+            android:label="Fairness Analysis"
+            android:parentActivityName=".ui.MainActivity" />
+        
+        <!-- Fraud Detection Activity -->
+        <activity
+            android:name=".ui.FraudDetectionActivity"
+            android:exported="false"
+            android:label="Fraud Detection"
+            android:parentActivityName=".ui.MainActivity" />
+        
+        <!-- Personalized Offers Activity -->
+        <activity
+            android:name=".ui.PersonalizedOffersActivity"
+            android:exported="false"
+            android:label="Personalized Offers"
+            android:parentActivityName=".ui.MainActivity" />
+        
+        <!-- Regulatory Compliance Activity -->
+        <activity
+            android:name=".ui.RegulatoryComplianceActivity"
+            android:exported="false"
+            android:label="Regulatory Compliance"
+            android:parentActivityName=".ui.MainActivity" />
+        
+        <!-- Explain My Profile Activity -->
+        <activity
+            android:name=".ui.MyAIProfileActivity"
+            android:exported="false"
+            android:label="Explain My Profile"
+            android:parentActivityName=".ui.MainActivity" />
+        
+        <!-- Security & Privacy Activity -->
+        <activity
+            android:name=".ui.SecurityPrivacyActivity"
+            android:exported="false"
+            android:label="Security &amp; Privacy"
+            android:parentActivityName=".ui.ProfileActivity" />
+        
+        <!-- Firebase Listener Service -->
+        <service
+            android:name=".FirebaseListenerService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
+    </application>
+
+</manifest>
+
