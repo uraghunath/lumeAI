@@ -15,10 +15,10 @@ import kotlinx.coroutines.delay
 object ApplicationTracker {
     
     // Azure OpenAI via Grand Central AI Gateway
-    private const val OPENAI_API_KEY = "51d1b178df064e37be1a3f4e1fb5c91c"
-    private const val OPENAI_ENDPOINT = "https://api.dev.agbs.gcservices.io/openai/v1"
+    private const val OPENAI_API_KEY = "zzzzzzzzzz"
+    private const val OPENAI_ENDPOINT = "https://api.hack.lume.services.io/openai/v1"
     private const val OPENAI_MODEL = "gpt-4o-mini"
-    private const val AGENT_ID = "550e8400-e29b-41d4-a716-446655440000" // AI Gateway requirement
+    private const val AGENT_ID = "zzzzzzzzzz" // AI Gateway requirement
     private const val API_VERSION = "2024-08-01-preview"
     
     /**
