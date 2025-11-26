@@ -1,14 +1,14 @@
 {
   "project_info": {
-    "project_number": "112670824090",
-    "firebase_url": "https://lumeai-banking-demo-default-rtdb.firebaseio.com",
-    "project_id": "lumeai-banking-demo",
-    "storage_bucket": "lumeai-banking-demo.firebasestorage.app"
+    "project_number": "11111111111",
+    "firebase_url": "https://xxxx-xxxx-demo-rtdb.firebaseio.com",
+    "project_id": "xxxxx-xxxxxx-xxxxx",
+    "storage_bucket": "xxxxx-xxxxxx-xxxx.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:112670824090:android:167f81f6ffd972b8fef123",
+        "mobilesdk_app_id": "1:123456:android:167f81f6ffd972b8fef123",
         "android_client_info": {
           "package_name": "com.lumeai.banking"
         }
@@ -16,7 +16,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyD_o-fvzBSnJjFCnyNvJfC1WB8rdAAQ14o"
+          "current_key": "zzzzzzz"
         }
       ],
       "services": {
