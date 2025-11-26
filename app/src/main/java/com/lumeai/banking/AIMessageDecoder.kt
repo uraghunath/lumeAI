@@ -13,7 +13,7 @@ import java.net.URL
 object AIMessageDecoder {
     
     // Azure OpenAI via Grand Central AI Gateway
-    private const val OPENAI_API_KEY = "51d1b178df064e37be1a3f4e1fb5c91c"
+    private const val OPENAI_API_KEY = "zzzzzzzzz"
     private const val OPENAI_ENDPOINT = "https://api.hack.lume.services.io/openai/v1"
     private const val OPENAI_MODEL = "gpt-4o-mini"
     private const val AGENT_ID = "zzzzzzzzzz" // AI Gateway requirement
