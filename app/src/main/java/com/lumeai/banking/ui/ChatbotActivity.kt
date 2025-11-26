@@ -61,9 +61,9 @@ class ChatbotActivity : AppCompatActivity() {
     private val languageBarId = View.generateViewId()
     
     // OpenAI Configuration (Azure OpenAI via AGBS proxy)
-    private val OPENAI_API_KEY = "51d1b178df064e37be1a3f4e1fb5c91c"
-    private val OPENAI_ENDPOINT = "https://api.dev.agbs.gcservices.io/openai/v1/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview"
-    private val X_AGENT_ID = "a1b2c3d4-e5f6-47a8-b9c0-d1e2f3a4b5c6" // Valid UUID v4
+    private val OPENAI_API_KEY = "zzzzzzzz"
+    private val OPENAI_ENDPOINT = "https://api.hack.lume.gcservices.io/openai/v1"
+    private val X_AGENT_ID = "zzzzzzzzz" // Valid UUID v4
     
     data class ChatMessage(
         val text: String,
