@@ -115,40 +115,256 @@ Banks increasingly use AI for credit decisions, but:
 ### **Prerequisites**
 - Android Studio Arctic Fox or later
 - JDK 8 or higher
-- Firebase account
-- Azure OpenAI API key
+- Firebase account ([Create one here](https://console.firebase.google.com/))
+- Azure OpenAI API key or access to OpenAI-compatible API
 
-### **Installation**
+---
 
-1. **Clone the repository**
-```bash
-git clone https://github.com/your-org/lume-ai.git
-cd lume-ai
+## 🔑 Configuration Guide
+
+**⚠️ IMPORTANT:** This project requires API keys and configuration files to function. Follow these steps carefully before running the application.
+
+### **Step 1: Firebase Setup**
+
+#### 1.1 Create a Firebase Project
+1. Go to [Firebase Console](https://console.firebase.google.com/)
+2. Click **"Add Project"** and follow the wizard
+3. Enable **Firebase Realtime Database**:
+   - Navigate to **Build > Realtime Database**
+   - Click **"Create Database"**
+   - Choose a location (e.g., `us-central1`)
+   - Start in **Test Mode** for development
+
+#### 1.2 Configure Android App in Firebase
+1. In Firebase Console, click **Add App** → **Android**
+2. Enter package name: `com.lumeai.banking`
+3. Download `google-services.json`
+4. **Place the file in:** `app/google-services.json`
+
+#### 1.3 Update Firebase Realtime Database Rules
+In Firebase Console → Realtime Database → Rules, paste:
+```json
+{
+  "rules": {
+    "decisions": {
+      ".read": true,
+      ".write": true
+    },
+    "customers": {
+      ".read": true,
+      ".write": true
+    },
+    "consents": {
+      ".read": true,
+      ".write": true
+    },
+    "fraudAlerts": {
+      ".read": true,
+      ".write": true
+    },
+    "personalizedOffers": {
+      ".read": true,
+      ".write": true
+    }
+  }
+}
+```
+**Note:** These are permissive rules for development. Use proper authentication in production.
+
+#### 1.4 Configure Bank Portal (HTML)
+Open `bank-portal.html` and update the Firebase configuration (around line 1336):
+
+```javascript
+const firebaseConfig = {
+    apiKey: "YOUR_FIREBASE_API_KEY",
+    authDomain: "your-project-id.firebaseapp.com",
+    databaseURL: "https://your-project-id-default-rtdb.firebaseio.com",
+    projectId: "your-project-id",
+    storageBucket: "your-project-id.appspot.com",
+    messagingSenderId: "123456789012",
+    appId: "1:123456789012:web:abcdef1234567890"
+};
 ```
 
-2. **Configure Firebase**
-- Add your `google-services.json` to `app/`
-- Update Firebase Realtime Database rules
+**Where to find these values:**
+- Firebase Console → Project Settings → General → Your apps → Web app
 
-3. **Configure Azure OpenAI**
-- Get API key from Azure Portal
-- Update API key in relevant Kotlin files (see `BankingAIExplainer.kt`)
+---
 
-4. **Build the project**
+### **Step 2: Azure OpenAI / OpenAI API Setup**
+
+The app uses Azure OpenAI (GPT-4o-mini) for AI explanations. You'll need to configure API keys in multiple files.
+
+#### 2.1 Get Your API Key
+**Option A: Azure OpenAI** (Recommended for enterprise)
+1. Go to [Azure Portal](https://portal.azure.com/)
+2. Create an **Azure OpenAI Service** resource
+3. Navigate to **Keys and Endpoint**
+4. Copy your API key and endpoint
+
+**Option B: OpenAI Direct**
+1. Go to [OpenAI Platform](https://platform.openai.com/)
+2. Navigate to **API Keys**
+3. Create a new key
+
+**Option C: Custom OpenAI-compatible Gateway**
+- If using a custom gateway, get your endpoint URL and API key
+
+#### 2.2 Update API Keys in Android App
+
+Replace `"zzzzzzzz"` or `"zzzzzzzzz"` with your actual API key in these files:
+
+1. **`app/src/main/java/com/lumeai/banking/BankingAIExplainer.kt`**
+```kotlin
+private const val OPENAI_API_KEY = "YOUR_ACTUAL_API_KEY"
+private const val OPENAI_ENDPOINT = "YOUR_ENDPOINT_URL"
+private const val AGENT_ID = "YOUR_AGENT_ID" // Optional, remove if not needed
+```
+
+2. **`app/src/main/java/com/lumeai/banking/AIMessageDecoder.kt`**
+```kotlin
+private const val OPENAI_API_KEY = "YOUR_ACTUAL_API_KEY"
+```
+
+3. **`app/src/main/java/com/lumeai/banking/ApplicationTracker.kt`**
+```kotlin
+private const val OPENAI_API_KEY = "YOUR_ACTUAL_API_KEY"
+```
+
+4. **`app/src/main/java/com/lumeai/banking/CounterfactualEngine.kt`**
+```kotlin
+private const val OPENAI_API_KEY = "YOUR_ACTUAL_API_KEY"
+```
+
+5. **`app/src/main/java/com/lumeai/banking/ui/ChatbotActivity.kt`**
+```kotlin
+private val OPENAI_API_KEY = "YOUR_ACTUAL_API_KEY"
+private val X_AGENT_ID = "YOUR_AGENT_ID" // Optional
+```
+
+6. **`app/src/main/java/com/lumeai/banking/ui/MyAIProfileActivity.kt`**
+```kotlin
+private val OPENAI_API_KEY = "YOUR_ACTUAL_API_KEY"
+```
+
+---
+
+### **Step 3: (Optional) API Setu Integration for Document Verification**
+
+If you want real PAN/Aadhaar validation (Indian KYC), set up API Setu:
+
+1. Sign up at [API Setu](https://setu.co/)
+2. Get credentials: `client_id`, `client_secret`, `product_instance_id`
+3. Update `app/src/main/java/com/lumeai/banking/ui/DocumentValidationActivity.kt`:
+   - Change `hasRealCredentials = false` to `hasRealCredentials = true`
+   - Replace placeholders in lines 813-815
+
+---
+
+### **Step 4: Security Best Practices** 🔒
+
+#### 4.1 Protect Your Credentials
+
+**DO NOT commit real API keys to Git!** 
+
+Add `google-services.json` to `.gitignore`:
 ```bash
+echo "google-services.json" >> .gitignore
+git rm --cached app/google-services.json
+git commit -m "Stop tracking google-services.json"
+```
+
+#### 4.2 Use Environment Variables (Recommended for Production)
+
+Instead of hardcoding keys, use Gradle properties:
+
+1. Create `local.properties` (already in `.gitignore`):
+```properties
+OPENAI_API_KEY=your_actual_key_here
+FIREBASE_API_KEY=your_firebase_key_here
+```
+
+2. Update `app/build.gradle`:
+```gradle
+android {
+    defaultConfig {
+        // Load from local.properties
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file('local.properties').newDataInputStream())
+        
+        buildConfigField "String", "OPENAI_API_KEY", "\"${properties.getProperty('OPENAI_API_KEY')}\""
+    }
+}
+```
+
+3. Access in code:
+```kotlin
+private const val OPENAI_API_KEY = BuildConfig.OPENAI_API_KEY
+```
+
+#### 4.3 Create a Credentials Template
+Create `.env.template` to document required secrets (for team sharing):
+```bash
+# Copy this file to local.properties and fill in your values
+OPENAI_API_KEY=your_azure_openai_key
+OPENAI_ENDPOINT=https://your-resource.openai.azure.com/openai/v1
+FIREBASE_API_KEY=your_firebase_api_key
+FIREBASE_PROJECT_ID=your-project-id
+```
+
+---
+
+### **Step 5: Build and Run**
+
+Once all keys are configured:
+
+1. **Sync Gradle**
+```bash
+./gradlew clean
 ./gradlew build
 ```
 
-5. **Run on device/emulator**
+2. **Install on Android Device/Emulator**
 ```bash
 ./gradlew installDebug
 ```
 
-### **Bank Portal Setup**
+Or use Android Studio:
+- Click **File → Sync Project with Gradle Files**
+- Click **Run → Run 'app'**
 
-1. Open `bank-portal.html` in a browser
-2. Update Firebase config in the script section
-3. Deploy to Firebase Hosting (optional)
+3. **Launch Bank Portal**
+- Open `bank-portal.html` in a web browser
+- Create test loan applications
+- Watch them sync to the Android app in real-time!
+
+---
+
+### **Troubleshooting Configuration Issues**
+
+| Error | Solution |
+|-------|----------|
+| `FileNotFoundException: google-services.json` | Ensure file is in `app/` directory |
+| `401 Unauthorized` (OpenAI) | Check API key is valid and not expired |
+| Firebase not syncing | Verify database URL and rules are correct |
+| Build fails with missing dependencies | Run `./gradlew --refresh-dependencies` |
+
+---
+
+### **Quick Start Checklist** ✅
+
+- [ ] Created Firebase project
+- [ ] Downloaded and placed `google-services.json`
+- [ ] Updated Firebase Realtime Database rules
+- [ ] Updated Firebase config in `bank-portal.html`
+- [ ] Obtained Azure OpenAI / OpenAI API key
+- [ ] Replaced all `"zzzzzzzz"` placeholders with real API keys
+- [ ] (Optional) Set up API Setu credentials
+- [ ] Added `google-services.json` to `.gitignore`
+- [ ] Successfully built project with `./gradlew build`
+- [ ] App runs on emulator/device without crashes
+
+---
 
 ---
 
