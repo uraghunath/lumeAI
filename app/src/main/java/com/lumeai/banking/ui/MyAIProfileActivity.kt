@@ -52,10 +52,10 @@ class MyAIProfileActivity : AppCompatActivity() {
     private var userStats: UserStats? = null
     
     // Azure OpenAI Configuration
-    private val OPENAI_API_KEY = "51d1b178df064e37be1a3f4e1fb5c91c"
-    private val OPENAI_ENDPOINT = "https://api.dev.agbs.gcservices.io/openai/v1"
+    private val OPENAI_API_KEY = "zzzzzzzz"
+    private val OPENAI_ENDPOINT = "https://api.hack.lume.services.io/openai/v1"
     private val OPENAI_MODEL = "gpt-4o-mini"
-    private val AGENT_ID = "550e8400-e29b-41d4-a716-446655440000"
+    private val AGENT_ID = "zzzzzzzz"
     private val API_VERSION = "2024-08-01-preview"
 
     override fun onCreate(savedInstanceState: Bundle?) {
