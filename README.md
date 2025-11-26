@@ -249,18 +249,6 @@ private val OPENAI_API_KEY = "YOUR_ACTUAL_API_KEY"
 
 ---
 
-### **Step 3: (Optional) API Setu Integration for Document Verification**
-
-If you want real PAN/Aadhaar validation (Indian KYC), set up API Setu:
-
-1. Sign up at [API Setu](https://setu.co/)
-2. Get credentials: `client_id`, `client_secret`, `product_instance_id`
-3. Update `app/src/main/java/com/lumeai/banking/ui/DocumentValidationActivity.kt`:
-   - Change `hasRealCredentials = false` to `hasRealCredentials = true`
-   - Replace placeholders in lines 813-815
-
----
-
 ### **Step 4: Security Best Practices** 🔒
 
 #### 4.1 Protect Your Credentials
